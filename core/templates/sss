@@ -1,0 +1,622 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <div class="card-header p-4" style="background: #1b232d !important; color: #fff !important; border: none !important;">
+        <div class="row">
+            <div class="col-lg-3 col-12 pt-4"><br>
+                <h5 class="fw-normal mb-0"><a style="text-decoration: none !important;" href="{% url 'refresh' %}" data-bs-toggle="tooltip"
+                                              data-bs-placement="bottom"
+                                              title="{% if request.session.refresh_page %}Pausar atualização automática{% else %}Iniciar atualização automática{% endif %}"
+                                              class="fs-2 {% if request.session.refresh_page %}text-danger{% endif %}">
+                    {% if request.session.refresh_page %}
+                        <i style="color: #ff5e57 !important;" class="bi bi-pause-circle-fill"></i> <small style="font-size: 14px !important; color: #ff5e57 !important; text-decoration: none !important;"></small>
+                    {% else %}
+                        <i style="color: #27a077 !important;" class="bi bi-play-circle-fill"></i> <small style="font-size: 14px !important; color: #27a077 !important; text-decoration: none !important;"></small>
+                    {% endif %}
+                </a>
+                </h5>
+            </div>
+            <div class="col-lg-9 mt-4">
+                <form class="row" method="post">
+                    {% csrf_token %}
+
+                    <div class="col-lg-2 d-none-if-live d-none">
+                        <label for="time">Data do evento:</label>
+                        <select id="time" name="time" class="btn btn-secondary w-100 dropdown-toggle" >
+                            <option value="a" {% if request.user.time == 'a' %}selected{% endif %}>Qualquer
+                                horário
+                            </option>
+                            <option value="12h" {% if request.user.time == '12h' %}selected{% endif %}>12 horas
+                            </option>
+                            <option value="16h" {% if request.user.time == '16h' %}selected{% endif %}>16 horas
+                            </option>
+                            <option value="24h" {% if request.user.time == '24h' %}selected{% endif %}>24 horas
+                            </option>
+                            <option value="48h" {% if request.user.time == '48h' %}selected{% endif %}>48 horas
+                            </option>
+                            <option value="1w" {% if request.user.time == '1w' %}selected{% endif %}>1 semana
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-lg-2 d-none-if-live d-none">
+                        <label for="order">Classificar</label>
+                        <select id="order" name="order" class="btn btn-secondary w-100 dropdown-toggle" >
+                            <option value="minutes" {% if 'minutes' in request.user.order %}selected{% endif %}>
+                                Período
+                            </option>
+                            <option value="date" {% if 'date' in request.user.order %}selected{% endif %}>
+                                Horário de
+                                início
+                            </option>
+                            <option value="profit" {% if 'profit' in request.user.order %}selected{% endif %}>
+                                Lucro
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-lg-2 mt-3 mt-lg-0">
+                        Faixa de Lucro
+                        <div class="input-group">
+                            <input name="profit_start" type="number" class="form-control" style="background: #6c757d !important; border: none !important;  color: #fff !important;"
+                                   value="{{ request.user.profit_start|stringformat:".2f" }}">
+                            <span class="input-group-text"style="background: #6c757d !important; border: none !important;  color: #fff !important;" >-</span>
+                            <input name="profit_end" type="number" class="form-control" style="border: none !important; background: #6c757d !important; color: #fff !important;"
+                                   value="{{ request.user.profit_end|stringformat:".2f" }}">
+                        </div>
+                    </div>
+                    <div class="col-lg-2 d-none d-none-if-live">
+                        <label>Esporte</label>
+                        <div class="dropdown">
+                            <a class="btn btn-secondary w-100 dropdown-toggle" href="#" role="button"
+                               id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                -- escolher --
+                            </a>
+
+                            <ul class="dropdown-menu" style="min-width: 400px;" aria-labelledby="dropdownMenuLink">
+                                <div class="row">
+                                    <li class="col-6">
+                                        <a href="#" id="check-all-sports"
+                                           class="dropdown-item btn btn-primar fw-bold"><i
+                                                class="bi bi-check-all"></i> Marcar Todos</a>
+                                    </li>
+                                    <li class="col-6">
+                                        <a href="#" id="uncheck-all-sports"
+                                           class="dropdown-item btn btn-primary fw-bold"><i class="bi bi-x"></i>
+                                            Desm. Todos</a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    {% for sport in sports %}
+                                        <li class="col-6"><label for="house{{ forloop.counter0 }}"
+                                                                 class="dropdown-item"
+                                                                 href="#">{{ sport }} <input type="checkbox"
+                                                                                             name="sports[]"
+                                                                                             id="sport{{ forloop.counter0 }}"
+                                                                                             value="{{ sport }}"
+                                                                                             class="float-end mt-1"
+                                                                                             {% if sport in user_sports %}checked{% endif %}></label>
+                                        </li>
+                                    {% endfor %}
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <label>Casa</label>
+                        <div class="dropdown">
+                            <a class="btn btn-secondary w-100 dropdown-toggle" href="#" role="button"
+                               id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                -- escolher --
+                            </a>
+
+                            <ul class="dropdown-menu" style="min-width: 300px;" aria-labelledby="dropdownMenuLink">
+                                <div class="row">
+                                    <li class="col-6">
+                                        <a href="#" id="check-all" class="dropdown-item btn btn-primar fw-bold"><i
+                                                class="bi bi-check-all"></i> Marcar Todos</a>
+                                    </li>
+                                    <li class="col-6">
+                                        <a href="#" id="uncheck-all"
+                                           class="dropdown-item btn btn-primary fw-bold"><i class="bi bi-x"></i>
+                                            Desm. Todos</a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    {% for house in houses %}
+                                        <li class="col-6 {% if house.lower not in live_houses %}d-none d-none-if-live{% endif %}"><label for="house{{ forloop.counter0 }}"
+                                                                 class="dropdown-item"
+                                                                 href="#">{{ house }} <input type="checkbox"
+                                                                                             name="houses[]"
+                                                                                             id="house{{ forloop.counter0 }}"
+                                                                                             value="{{ house }}"
+                                                                                             class="float-end mt-1"
+                                                                                             {% if house in user_houses %}checked{% endif %}></label>
+                                        </li>
+                                    {% endfor %}
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-12">
+                        <label>&nbsp;</label><br>
+                        <button style="background: #27a077 !important;" class="w-100 btn btn-success fw-bold" type="submit" title="filtrar">
+                            Buscar <i class="bi bi-arrow-right-short"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+            {% if not request.user.plan_is_active %}
+        <div class="row">
+            <div class="col-12 col-lg-6 p-4">
+                
+                <div class="col-12 col-lg-8" style="display: inline-block !important;">
+                    <center><span class="text-center alig mt-2">
+                        <img src="https://bookbet.com.br/static/7dias.png" style="width: 40%;">
+                    </span></center>
+                    <h5 class="text-white mt-2 text-center"><br>
+                        <p>A sua conta está limitada a operações com lucros inferior a 1%. <br>
+                        Faça upgrade de sua conta e habilite todas as funções!!</p>
+                    </h5> 
+                        <br>
+                    <center><a target="_blank" href="#" class="btn btn-success rounded-pill fw-bold btn-lg text-center">
+                        <i class="bi bi-whatsapp"target="_blank"></i>
+                        Clique aqui para suporte
+                    </a></center>
+                </div>
+            </div>
+            <div class="col-lg-6 p-4">
+                {% if not request.user.plan_is_active and 'arenagreen' not in request.get_host %}
+                
+                <div class="row mt-3">
+                    {% for plan in plans %}
+                        <div class="col-12 col-lg-6">
+                            <div class="card text-center card-body p-4 m-2" style="!important; border: 1px solid #27a077; color: #bfbfbf !important; background: none !important;" >
+                                <div class="fs-1" style="font-size: 20px; color: #27a077 !important;"><i class="bi bi-trophy"></i></div>
+                                <h3 class="text-center" style="color: #27a077 !important; text-transform: uppercase !important;">{{ plan.name }}</h3>
+                                <i class="bi bi-check">Acesso ilimitado</i>  
+                                <i class="bi bi-check">Surebets sem limite de lucros</i>
+                                <i class="bi bi-check">Acesso a comunidade chat </i>
+                                <i class="bi bi-check">Suporte Whatsapp </i>
+                                <i class="bi bi-check">Aulas completas </i>
+                                <br>
+                                <span>
+                                    <span class="text-success fw-bold" style="font-size: 40px !important;">
+                                        R$ {{ plan.month_amount|floatformat:2 }}
+                                    </span>
+                                        /Mês
+                                </span>
+                                <br><br>
+                                {{ #!/usr/bin/env python3
+                                conexao_ = php_mysqli_connect("localhost", "smar2874_appbethackerv2", "Senha123!")
+                                banco_ = php_mysqli_select_db(conexao_, "smar2874_appbethackerv2")
+                                mysqli_set_charset(conexao_, "utf8")
+                                referencia_ = "{{ user.referer }}"
+                                sql_ = str("SELECT * FROM `afiliados` WHERE ref = '") + str(referencia_) + str("'")
+                                result_ = php_mysqli_query(conexao_, sql_)
+                                while True:
+                                    row_ = php_mysqli_fetch_array(result_)
+                                    if not (row_):
+                                        break
+                                    # end if
+                                    print("<a href='" + row_["checkout"] + """'  class='select-plan btn btn-success btn-lg fw-bold' ><i class='bi bi-wallet'></i>
+                                    Selecionar
+                                    </a>
+                                    """)
+                                # end while
+                                mysqli_close(conexao_) }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            </div>
+        </div>
+        <div class="card-header p-5">
+            
+
+            <!-- Modal -->
+            <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Contratar Plano</h5>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <div class="modal-body">
+                            <div id="pay-form" class="d-none">
+                                <div class="text-center mt-5">
+                                    <h3><i class="bi bi-credit-card"></i> Forma de Pagamento</h3>
+                                    <p>Selecione MercadoPago para cartão de crédito ou PIX</p>
+                                </div>
+                
+                
+                                <ul class="nav nav-tabs" id="myTab" role="tablist" style="max-width: 500px; margin: 0 auto;height: 80px;">
+                                    <li class="nav-item" role="presentation">
+                                        <button class="btn btn-light nav-lin active" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
+                                                type="button" role="tab" aria-controls="profile" aria-selected="false"><img
+                                                src="{% static 'pix.png' %}"
+                                                height="68"></button> &nbsp;
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="btn btn-light nav-lin" id="home-tab" style="height: 80px;" data-bs-toggle="tab"
+                                                data-bs-target="#home"
+                                                type="button" role="tab" aria-controls="home" aria-selected="true"><img
+                                                src="{% static 'mercadopago.png' %}" height="30"></button>
+                                    </li>
+                                </ul>
+
+                                <br>
+                                <div class="tab-content" id="myTabContent">
+                                    <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                        <form id="form-checkout" class="card card-body" style="margin: 0 auto; max-width: 500px;">
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                <div class="mt-2 col-6">
+                                                    <div id="form-checkout__cardNumber" class="form-control"></div>
+                                                </div>
+                                                <div class="mt-2 col-3">
+                                                    <div id="form-checkout__expirationDate" class="form-control"></div>
+                                                </div>
+                                                <div class="mt-2 col-3">
+                                                    <div id="form-checkout__securityCode" class="form-control"></div>
+                                                </div>
+                                                <div class="mt-2 col-6">
+                                                    <input type="text" id="form-checkout__cardholderName" class="form-control"/>
+                                                </div>
+                                                <div class="mt-2 col-6">
+                                                    <select id="form-checkout__issuer" class="form-control"></select>
+                                                </div>
+                                                <div class="mt-2 col-6">
+                                                    <select id="form-checkout__installments" class="form-control"></select>
+                                                </div>
+                                                <div class="mt-2 col-6">
+                                                    <select id="form-checkout__identificationType" class="form-control"></select>
+                                                </div>
+                                                <div class="mt-2 col-6">
+                                                    <input type="text" id="form-checkout__identificationNumber"
+                                                           class="form-control"/>
+                                                </div>
+                                                <div class="mt-2 col-6">
+                                                    <input type="email" id="form-checkout__cardholderEmail" class="form-control"/>
+                                                </div>
+                                            </div>
+                
+                                            <button type="submit" class="btn btn-success fw-bold mt-2" id="form-checkout__submit"><i
+                                                    class="bi bi-credit-card"></i> PAGAR
+                                            </button>
+                                            <progress value="0" class="progress-bar w-100 d-none">Carregando...</progress>
+                                            <p class="text-danger fw-bold mt-3" id="mp-errors"></p>
+                                        </form>
+                                    </div>
+                                    <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                        <form class="card card-body" style="max-width: 500px; margin: 0 auto;" id="form-checkout-pix"
+                                              target="_blank" action="{% url 'process-payment' %}" method="post">
+                                            <input type="hidden" name="plan_id" value="{{ request.user.plan.id }}">
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                <div class="col-6 mb-2">
+                                                    <label for="payerFirstName">Nome</label>
+                                                    <input id="form-checkout__payerFirstName" name="payerFirstName" type="text"
+                                                           class="form-control">
+                                                </div>
+                                                <div class="col-6 mb-2">
+                                                    <label for="payerLastName">Sobrenome</label>
+                                                    <input id="form-checkout__payerLastName" name="payerLastName" type="text"
+                                                           class="form-control">
+                                                </div>
+                                                <div class="mb-2">
+                                                    <label for="email">E-mail</label>
+                                                    <input id="form-checkout__email" name="email" type="text" class="form-control">
+                                                </div>
+                                                <div class="mb-2">
+                                                    <label for="identificationType">Tipo de documento</label>
+                                                    <select id="form-checkoutpix__identificationType" name="identificationType"
+                                                            type="text" class="form-control"></select>
+                                                </div>
+                                                <div>
+                                                    <label for="identificationNumber">Número do documento</label>
+                                                    <input id="form-checkout__identificationNumber" class="form-control"
+                                                           name="identificationNumber" type="text">
+                                                </div>
+                
+                                                <div>
+                                                    <input type="hidden" name="description" id="description"
+                                                           value="Nome do Produto">
+                                                    <br>
+                                                    <button type="submit" class="btn btn-success btn-lg w-100 fw-bold"><i
+                                                            class="bi bi-wallet"></i>
+                                                        Contratar
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="card-body p-0 pt-0 h-100 position-relative">
+        {% if user.plan.has_live or user.plan.live_only %}
+            <div class="p-3">
+                Clique no botão ao lado para mudar para apostas :
+                <a class="btn btn-primary d-none fw-bold" id="pre-live-button" aria-current="page"
+                   onclick="sessionStorage.sempregreen_type='pre-live'; location.reload();"><i
+                        class="bi bi-pip-fill"></i>
+                    Pré-Live</a>
+                <a class="btn btn-warning active d-none fw-bold" id="live-button"
+                   onclick="sessionStorage.sempregreen_type='live'; location.reload();"><i class="bi bi-tv-fill"></i>
+                    Live</a>
+            </div>
+        {% endif %}
+        <iframe src="" class="h-100 position-absolute" style="border: none !important; min-height: 1000px;" height="100%"
+                width="100%"></iframe>
+    </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        if (sessionStorage.sempregreen_type === undefined) {
+            sessionStorage.sempregreen_type = 'pre-live';
+        }
+        {% if not user.plan.has_live and not user.plan.live_only %}
+            sessionStorage.sempregreen_type = 'pre-live';
+        {% endif %}
+        if (sessionStorage.sempregreen_type === 'pre-live') {
+            if (document.querySelector('#live-button')) {
+                document.querySelector('#live-button').classList.remove('d-none');
+            }
+            document.querySelector('iframe').src = '{% url "odds" %}';
+            document.querySelectorAll('.d-none-if-live').forEach(item => {
+                item.classList.remove('d-none');
+            });
+        } else {
+            if (document.querySelector('#pre-live-button')) {
+                document.querySelector('#pre-live-button').classList.remove('d-none');
+            }
+            document.querySelector('iframe').src = '{% url "live" %}';
+        }
+        document.querySelectorAll('.dropdown-menu li label').forEach(el => {
+            el.addEventListener('click', e => {
+                e.stopPropagation();
+            });
+        });
+
+        const checkAll = document.querySelector('#check-all');
+
+        if (checkAll) {
+            checkAll.addEventListener('click', e => {
+                e.preventDefault();
+                e.stopPropagation();
+
+                document.querySelectorAll('.dropdown-menu li input[type=checkbox][name*="houses"]').forEach(el => {
+                    el.checked = true;
+                });
+            });
+        }
+
+        const checkAllSports = document.querySelector('#check-all-sports');
+
+        if (checkAllSports) {
+            checkAllSports.addEventListener('click', e => {
+                e.preventDefault();
+                e.stopPropagation();
+
+                document.querySelectorAll('.dropdown-menu li input[type=checkbox][name*="sports"]').forEach(el => {
+                    el.checked = true;
+                });
+            });
+        }
+
+        const uncheckAll = document.querySelector('#uncheck-all');
+
+        if (uncheckAll) {
+            uncheckAll.addEventListener('click', e => {
+                e.preventDefault();
+                e.stopPropagation();
+
+                document.querySelectorAll('.dropdown-menu li input[type=checkbox][name*="houses"]').forEach(el => {
+                    el.checked = false;
+                });
+            });
+        }
+
+        const uncheckAllSports = document.querySelector('#uncheck-all-sports');
+
+        if (uncheckAllSports) {
+            uncheckAllSports.addEventListener('click', e => {
+                e.preventDefault();
+                e.stopPropagation();
+
+                document.querySelectorAll('.dropdown-menu li input[type=checkbox][name*="sports"]').forEach(el => {
+                    el.checked = false;
+                });
+            });
+        }
+
+        const checkout_pix = document.querySelector('#form-checkout-pix');
+
+        if (checkout_pix) {
+            checkout_pix.addEventListener('submit', e => {
+                e.preventDefault();
+                e.stopPropagation();
+                e.target.submit();
+                location.reload();
+            });
+        }
+
+        document.querySelectorAll('.select-plan').forEach(item => {
+            item.addEventListener('click', e => {
+                e.preventDefault();
+                e.stopPropagation();
+
+                document.querySelectorAll('input[name=plan_id]').forEach(el => {
+                    el.value = item.dataset.plan;
+                });
+
+                document.querySelector('#pay-form').classList.remove('d-none');
+
+                const cardForm = mp.cardForm({
+                        amount: item.dataset.amount,
+                        iframe: true,
+                        form: {
+                            id: "form-checkout",
+                            cardNumber: {
+                                id: "form-checkout__cardNumber",
+                                placeholder: "Número do cartão",
+                            },
+                            expirationDate: {
+                                id: "form-checkout__expirationDate",
+                                placeholder: "MM/YY",
+                            },
+                            securityCode: {
+                                id: "form-checkout__securityCode",
+                                placeholder: "Código de segurança",
+                            },
+                            cardholderName: {
+                                id: "form-checkout__cardholderName",
+                                placeholder: "Titular do cartão",
+                            },
+                            issuer: {
+                                id: "form-checkout__issuer",
+                                placeholder: "Banco emissor",
+                            },
+                            installments: {
+                                id: "form-checkout__installments",
+                                placeholder: "Parcelas",
+                            },
+                            identificationType: {
+                                id: "form-checkout__identificationType",
+                                placeholder: "Tipo de documento",
+                            },
+                            identificationNumber: {
+                                id: "form-checkout__identificationNumber",
+                                placeholder: "Número do documento",
+                            },
+                            cardholderEmail: {
+                                id: "form-checkout__cardholderEmail",
+                                placeholder: "E-mail",
+                            },
+                        },
+                        callbacks: {
+                            onFormMounted: error => {
+                                if (error) return console.warn("Form Mounted handling error: ", error);
+                                console.log("Form mounted");
+                            },
+                            onSubmit: event => {
+                                event.preventDefault();
+
+                                const {
+                                    paymentMethodId: payment_method_id,
+                                    issuerId: issuer_id,
+                                    cardholderEmail: email,
+                                    amount,
+                                    token,
+                                    installments,
+                                    identificationNumber,
+                                    identificationType,
+                                } = cardForm.getCardFormData();
+
+                                fetch("{% url 'process-payment-card' %}", {
+                                    method: "POST",
+                                    headers: {
+                                        "Content-Type": "application/json",
+                                    },
+                                    body: JSON.stringify({
+                                        plan_id: item.dataset.plan,
+                                        token,
+                                        issuer_id,
+                                        payment_method_id,
+                                        transaction_amount: Number(amount),
+                                        installments: Number(installments),
+                                        payer: {
+                                            email,
+                                            identification: {
+                                                type: identificationType,
+                                                number: identificationNumber,
+                                            },
+                                        },
+                                    }),
+                                }).then(response => {
+                                    if (response.status !== 201) {
+                                        throw new Error('Something went wrong');
+                                    }
+                                    alert('Pagamento aprovado com sucesso! Clique no botão para ter acesso completo ao sistema.');
+                                    location.reload();
+                                }).catch(_ => {
+                                    alert('ERRO! Verifique se os dados do cartão estão corretos, ou se você possui saldo no cartão.');
+                                });
+                            },
+                            onFetching:
+                                (resource) => {
+                                    console.log("Fetching resource: ", resource);
+
+                                    // Animate progress bar
+                                    const progressBar = document.querySelector(".progress-bar");
+                                    progressBar.removeAttribute("value");
+
+                                    return () => {
+                                        progressBar.setAttribute("value", "0");
+                                    };
+                                },
+                            onError: (errors) => {
+                                let errorsHTML = [];
+
+                                errors.forEach(e => {
+                                    errorsHTML.push('<span>' + e.message + '</span>')
+                                    document.querySelector('#mp-errors').innerHTML = errorsHTML.join('<br>');
+                                });
+                            }
+                        },
+                    })
+                ;
+            })
+            ;
+        });
+        const mp = new MercadoPago("APP_USR-2f1d6fbf-33af-4dd7-855f-beb92c535c8b", {locale: 'pt-BR',});
+        (async function getIdentificationTypes() {
+            try {
+                const identificationTypes = await mp.getIdentificationTypes();
+                const identificationTypeElement = document.getElementById('form-checkoutpix__identificationType');
+
+                createSelectOptions(identificationTypeElement, identificationTypes);
+            } catch (e) {
+                return console.error('Error getting identificationTypes: ', e);
+            }
+        })();
+
+        function createSelectOptions(elem, options, labelsAndKeys = {label: "name", value: "id"}) {
+            const {label, value} = labelsAndKeys;
+
+            elem.options.length = 0;
+
+            const tempOptions = document.createDocumentFragment();
+
+            options.forEach(option => {
+                const optValue = option[value];
+                const optLabel = option[label];
+
+                const opt = document.createElement('option');
+                opt.value = optValue;
+                opt.textContent = optLabel;
+
+                tempOptions.appendChild(opt);
+            });
+
+            elem.appendChild(tempOptions);
+        }
+    </script>
+{% endblock %}
+
+

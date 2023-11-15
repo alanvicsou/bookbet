@@ -1,0 +1,201 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Bookbet | ODDS</title>
+</head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="https://bookbet.com.br/static/bbfiles/fonts/inter/inter.css" id="main-font-link" />
+    <link rel="stylesheet" href="https://bookbet.com.br/static/bbfiles/fonts/tabler-icons.min.css" />
+    <link rel="stylesheet" href="https://bookbet.com.br/static/bbfiles/fonts/feather.css" />
+    <link rel="stylesheet" href="https://bookbet.com.br/static/bbfiles/fonts/fontawesome.css" />
+    <link rel="stylesheet" href="https://bookbet.com.br/static/bbfiles/fonts/material.css" />
+    <link rel="stylesheet" href="https://bookbet.com.br/static/bbfiles/css/style.css" id="main-style-link" />
+    <link rel="stylesheet" href="https://bookbet.com.br/static/bbfiles/css/style-preset.css" />
+<body  style="background: #1b232d !important; color: #fff !important;"><br>
+<h6 class="mb-2" style="margin-left: 20px; color: #bfbfbf !important;">Encontrado um total de <strong class="text-success" style="color: #2ca87f !important; ">{{ qty }}</strong> apostas Pré-live disponíveis.</h6>
+    <div class="card-body">
+      <div class="table-responsive">
+          <table class="table table-xs">
+            <thead>
+              <tr style="border-top: 1px solid #303f50 !important; border-bottom: 1px solid #303f50 !important; background: #303f50 !important; border-spacing: 2px !important; border-collapse: collapse !important;">
+                <th style="color: #bfbfbf; border-top: 1px solid #303f50 !important; border-bottom: 1px solid #303f50 !important; background: #303f50 !important; border-spacing: 2px !important; border-collapse: collapse !important;">Lucro (%)</th>
+                <th style="color: #bfbfbf; border-top: 1px solid #303f50 !important; border-bottom: 1px solid #303f50 !important; background: #303f50 !important; border-spacing: 2px !important; border-collapse: collapse !important;">Casa</th>
+                <th style="color: #bfbfbf; border-top: 1px solid #303f50 !important; border-bottom: 1px solid #303f50 !important; background: #303f50 !important; border-spacing: 2px !important; border-collapse: collapse !important; width: 100px !important;">Evento</th>
+                <th style="color: #bfbfbf; border-top: 1px solid #303f50 !important; border-bottom: 1px solid #303f50 !important; background: #303f50 !important; border-spacing: 2px !important; border-collapse: collapse !important;">Esporte/Data</th>
+                <th style="color: #bfbfbf; border-top: 1px solid #303f50 !important; border-bottom: 1px solid #303f50 !important; background: #303f50 !important; border-spacing: 2px !important; border-collapse: collapse !important;">Mercado</th>
+                <th style="color: #bfbfbf; border-top: 1px solid #303f50 !important; border-bottom: 1px solid #303f50 !important; background: #303f50 !important; border-spacing: 2px !important; border-collapse: collapse !important;">Chance</th>
+                <th style="color: #bfbfbf; border-top: 1px solid #303f50 !important; border-bottom: 1px solid #303f50 !important; background: #303f50 !important; border-spacing: 2px !important; border-collapse: collapse !important;">Abrir</th>
+
+              </tr>
+            </thead>
+            <style>
+                
+
+                body {
+                    height: 100%;
+                    background: #1b232d;
+                    width: 100% !important;
+                    margin: 0px;
+                    
+                }
+
+                body::-webkit-scrollbar-track {
+                    background-color: none;
+                }
+                body::-webkit-scrollbar {
+                    width: 6px;
+                    background: none;
+                    border-radius: 5px;
+                }
+                body::-webkit-scrollbar-thumb {
+                    background: none;
+                }
+        
+                span.minor, span.minorc {
+                    font-size: 12px;
+                    color: #333;
+                }
+        
+                .dt-none {
+                    display: none;
+                }
+                .m-none {
+                    display: block;
+                }
+        
+                @media(max-width: 100px){
+                    .m-none {
+                        display: none;
+                    }
+                    .dt-none {
+                        display: block;
+                    }
+                }
+        
+                .arbb {
+                        text-decoration: none !important;
+                }
+        
+                abbr[title], acronym[title] {
+                    text-decoration: none !important;
+                }
+        
+                .minor{
+                    color: #bfbfbf !important;
+                }
+        
+                .minorc{
+                    color: #bfbfbf !important;
+                }
+        
+            </style>
+             
+            <tbody style="border-bottom: 1px solid #303f50 !important; border-spacing: 2px !important; border-collapse: collapse !important;">
+              {% for surebet_id, odds in odds.items %}
+               {% if forloop.counter < limit or limit == 0 %}
+              <tr>
+                <td  style="border-bottom: 1px solid #303f50 !important; border-spacing: 2px !important; border-collapse: collapse !important;">
+                  <div class="col-auto pe-0">
+                    <div class="flex-shrink-0">
+                      <div class="avtar avtar-s text-success" style=" color: #2ca87f !important; width: 50px; height: 50px;">{{ odds.0.profit|floatformat:2 }}%</div>
+                      <a style="display: inline-block;" onclick="window.open('{% url 'calc' odds.0.surebet_id odds.0.house odds.1.house %}', 'Calculadora', 'scrollbars=no,resizable=yes,status=no,location=no,toolbar=no,menubar=no,width=600,height=650,left=150,top=150')">
+                        <button style="display: inline-block;" type="button" class="btn btn-icon btn-outline-secondary avtar-xs">
+                          <i class="ti ti-calculator  text-sm"></i>
+                        </button>
+                      </a>
+                    </div>
+                  </div>
+                </td>
+                <td style="border-bottom: 1px solid #303f50 !important; border-spacing: 2px !important; border-collapse: collapse !important;">
+                  <div class="row align-items-center">
+                    <div class="col">
+                      <h6 class="mb-2"><span class="text-truncate" style="color: #bfbfbf; ">
+                        {% for item in odds %}
+                          {{ item.house }}
+
+                          {% if not forloop.last %}
+                          <br>
+                          {% endif %}
+                      {% endfor %}
+                      </span></h6>
+                    </div>
+                  </div>
+                </td>
+                <td style="border-bottom: 1px solid #303f50 !important; border-spacing: 2px !important; border-collapse: collapse !important; width: auto !important;"> 
+                  <div class="row align-items-center">
+                    <div class="col">
+                      <h6 class="mb-2"><span class="text-truncate w-100" style="color: #bfbfbf; "><small>
+                        {% for item in odds %}
+                          {{ item.match }}
+                      {% endfor %}
+                      </small></span></h6>
+                    </div>
+                  </div>
+                </td>
+                <td style="border-bottom: 1px solid #303f50 !important; border-spacing: 2px !important; border-collapse: collapse !important;">
+                  <h6 class="mb-2"><span class="text-truncate w-100" style="color: #bfbfbf; ">{{ odds.0.sport }}</span></h6>
+                  <p class="text-muted f-12 mb-0"><span class="text-truncate w-100" style="color: #747474; ">
+                    
+                          {{ odds.0.date|date:"d/m" }} {{ odds.0.hour|date:"H:i" }} 
+                      
+                  </span></p>
+                </td>
+                <td  style="border-bottom: 1px solid #303f50 !important; border-spacing: 2px !important; border-collapse: collapse !important;">
+                  {% for item in odds %}
+                  <h6 class="mb-2"><span class="text-truncate" style="color: #bfbfbf; ">{{ item.market|safe }}</span></h6>
+                          
+                  <h6 class="mb-2"><span class="text-truncate" style="color: #bfbfbf; ">{% if not forloop.last %}</span></h6>
+                          
+                          {% endif %}
+                      {% endfor %}
+                </td>
+                <td class="text-end" style="border-bottom: 1px solid #303f50 !important; border-spacing: 2px !important; border-collapse: collapse !important;">
+                  
+                  <h6 class="mb-2"><span class="text-truncate" style="color: #bfbfbf; ">{% for item in odds %}
+                    {{ item.chance|floatformat:2 }}
+
+                    {% if not forloop.last %}
+                        <br>
+                    {% endif %}
+                {% endfor %}</span></h6>
+                </td>
+
+                <td class="text-end" style="border-bottom: 1px solid #303f50 !important; border-spacing: 2px !important; border-collapse: collapse !important;">
+                  {% for item in odds %}
+                  {% if not forloop.last %} 
+                  <form   method="POST" action="https://crm.bookbet.com.br/abrir_ordem.php" >
+                    <input name="casa0" type="hidden" value="https://pt.surebet.com/nav/surebet/prong/1/{{ item.surebet_id }}/if">
+                    <input name="casa1" type="hidden" value="https://pt.surebet.com/nav/surebet/prong/0/{{ item.surebet_id }}/if">
+                    <input name="calcu" type="hidden" value="https://bookbet.com.br{% url 'calc' odds.0.surebet_id odds.0.house odds.1.house %}">
+                    <button type="submit" class="btn btn-sm btn-outline-success d-inline-flex">
+                      <i class="ti ti-chevron-right "></i>
+                    </button>
+                  </form>
+                  {% endif %}
+                {% endfor %}
+                </td>
+
+              </tr>
+              {% endif %}
+              {% endfor %}
+
+            </tbody>
+          </table> 
+      </div>
+    </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", e => {
+        {% if request.session.refresh_page %}
+            setTimeout(() => {
+                location.reload();
+            }, 7000);
+        {% endif %}
+    });
+</script>
+</main>
+</body>
+</html>

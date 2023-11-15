@@ -1,0 +1,471 @@
+{% load static %}
+{% if request.user.is_superuser %}
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <title>Bookbet :: Apostas inteligentes</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Bookbet - Apostas inteligentes | Scanner de apostas seguras com lucros garantidos ">
+    <meta name="keywords" content="Bookbet, Apostas, Apostas seguras, Surebets, Betting, Sportbook">
+    <meta name="author" content="Bookbet">
+
+    <link rel="icon" type="image/png" sizes="32x32" href="https://bookbet.com.br/static/bookbet-icon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://bookbet.com.br/static/bookbet-icon.png">
+    <link rel="manifest" href="/panel/manifest.json"><meta name="theme-color" content="#090f1e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#38226a">
+    <meta name="apple-mobile-web-app-title" content="BookBet">
+    <link rel="apple-touch-icon" href="https://bookbet.com.br/static/bookbet-icon.png">
+    <link rel="mask-icon" href="https://bookbet.com.br/static/bookbet-icon.png" color=#090f1e>
+    <meta name="msapplication-TileImage" content="https://bookbet.com.br/static/bookbet-icon.png">
+    <meta name="msapplication-TileColor" content="#090f1e">
+
+    <link rel="icon" href="https://bookbet.com.br/static/bookbet-icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://bookbet.com.br/static/bbfiles/fonts/inter/inter.css" id="main-font-link" />
+    <link rel="stylesheet" href="https://bookbet.com.br/static/bbfiles/fonts/tabler-icons.min.css" />
+    <link rel="stylesheet" href="https://bookbet.com.br/static/bbfiles/fonts/feather.css" />
+    <link rel="stylesheet" href="https://bookbet.com.br/static/bbfiles/fonts/fontawesome.css" />
+    <link rel="stylesheet" href="https://bookbet.com.br/static/bbfiles/fonts/material.css" />
+    <link rel="stylesheet" href="https://bookbet.com.br/static/bbfiles/css/style.css" id="main-style-link" />
+    <link rel="stylesheet" href="https://bookbet.com.br/static/bbfiles/css/style-preset.css" />
+    <link rel="stylesheet" href="https://bookbet.com.br/static/bbfiles/bootstrap-switch-button.min.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-14K1GBX9FG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', 'G-14K1GBX9FG');
+    </script>
+    <script src="https://bookbet.com.br/static/bbfiles/bootstrap-switch-button.min.js"></script>
+    <script>
+      (function () {
+        var switch_event = document.querySelector('#switch_event');
+
+        switch_event.addEventListener('change', function () {
+          if (switch_event.checked) {
+            document.querySelector('#console_event').innerHTML = 'Switch Button Checked';
+          } else {
+            document.querySelector('#console_event').innerHTML = 'Switch Button Unchecked';
+          }
+        });
+      })();
+    </script>
+    <script>
+      !(function () {
+        if (window.t4hto4) console.log('WiserNotify pixel installed multiple time in this page');
+        else {
+          window.t4hto4 = !0;
+          var t = document,
+            e = window,
+            n = function () {
+              var e = t.createElement('script');
+              (e.type = 'text/javascript'),
+                (e.async = !0),
+                (e.src = '../../pt.wisernotify.com/pixel6d4c.js?ti=1jclj6jkfc4hhry'),
+                document.body.appendChild(e);
+            };
+          'complete' === t.readyState ? n() : window.attachEvent ? e.attachEvent('onload', n) : e.addEventListener('load', n, !1);
+        }
+      })();
+    </script>
+    <script type="text/javascript">
+      (function (c, l, a, r, i, t, y) {
+        c[a] =
+          c[a] ||
+          function () {
+            (c[a].q = c[a].q || []).push(arguments);
+          };
+        t = l.createElement(r);
+        t.async = 1;
+        t.src = 'https://www.clarity.ms/tag/' + i;
+        y = l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t, y);
+      })(window, document, 'clarity', 'script', 'gkn6wuhrtb');
+    </script>
+    <style>
+      body::-webkit-scrollbar-track {
+                    background-color: none;
+                }
+                body::-webkit-scrollbar {
+                    width: 6px;
+                    background: none;
+                    border-radius: 5px;
+                }
+                body::-webkit-scrollbar-thumb {
+                    background: noneca87f;
+                }
+    </style>
+
+  </head>
+
+  <body data-pc-preset="preset-8" data-pc-sidebar-caption="true" data-pc-direction="ltr" data-pc-theme_contrast="" data-pc-theme="dark">
+<div class="loader-bg">
+  <div class="loader-track">
+    <div class="loader-fill"></div>
+  </div>
+</div>
+
+<nav class="pc-sidebar">
+  <div class="navbar-wrapper">
+    <div class="m-header">
+      <a href="#" class="b-brand text-primary">
+        <!-- ========   Change your logo from here   ============ -->
+        <img src="https://bookbet.com.br/static/bbfiles/images/bookbet-dark.png" style="max-width: 70%;;" />
+        <span class="badge text-success rounded-pill bg-light-success ms-2 theme-version">v2.1</span>
+      </a>
+    </div>
+    <div class="navbar-content">
+      <div class="card pc-user-card">
+        <div class="card-body">
+          <div class="d-flex align-items-center">
+            <div class="flex-shrink-0">
+              <img src="https://invenioptl.com/images/bot.gif" alt="user-image" class="user-avtar wid-45 rounded-circle" />
+            </div>
+            <div class="flex-grow-1 ms-3 me-2">
+              <h6 class="mb-0">Olá, {{ user.first_name }}</h6>
+              <small><div class="text-success d-inline-block me-2">
+                <i class="fas fa-circle f-10"></i>
+                Online
+              </div></small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <ul class="pc-navbar">
+        <li class="pc-item pc-caption">
+          <label>Aplicativos</label>
+        </li>
+        <li class="pc-item pc-hasmenu">
+          <a href="{% url 'dashboard' %}" class="pc-link">
+            <span class="pc-micon">
+              <svg class="pc-icon">
+                <use xlink:href="#custom-status-up"></use>
+              </svg>
+            </span>
+            <span class="pc-mtext">Apostas</span>            
+          </a>
+        </li>
+        <li class="pc-item pc-hasmenu">
+          <a class="pc-link" href="https://bookbet.com.br/static/calculadora.html" onclick="window.open(this.href,'targetWindow','scrollbars=no,resizable=yes,status=no,location=no,toolbar=no,menubar=no,width=600,height=650,left=150,top=150'); return false;">
+            <span class="pc-micon">
+              <svg class="pc-icon">
+                <use xlink:href="#custom-note-1"></use> 
+              </svg>
+            </span>
+            <span class="pc-mtext">Calculadora</span>
+          </a>
+        </li>
+        <li class="pc-item pc-hasmenu">
+          <a class="pc-link" href="https://bookbet.com.br/static/bookbet.rar" target="_blank" >
+            <span class="pc-micon">
+              <i class="ti ti-download"></i>
+            </span>
+            <span class="pc-mtext">Baixar Extensão </span>
+          </a>
+        </li>
+        {% if request.user.is_superuser %}
+        <li class="pc-item pc-caption">
+            <label>Admin</label>
+        </li>
+        <li class="pc-item pc-hasmenu">
+          <a class="pc-link" href="{% url 'addcliente' %}"  >
+            <span class="pc-micon">
+              <i class="ti ti-download"></i>
+            </span>
+            <span class="pc-mtext">Adicionar Afiliado </span>
+          </a>
+        </li>
+        <li class="pc-item pc-hasmenu ">
+            <a href="{% url 'indications' %}" class="pc-link">
+              <span class="pc-micon">
+                <svg class="pc-icon">
+                  <use xlink:href="#custom-user-add"></use>
+                </svg>
+              </span>
+              <span class="pc-mtext">Indicações</span>            
+            </a>
+          </li>
+        {% endif %}
+        <li class="pc-item pc-caption">
+            <label>Ferramentas</label>
+        </li>
+        <li class="pc-item pc-hasmenu">
+          <a href="#" class="pc-link">
+            <span class="pc-micon">
+              <svg class="pc-icon">
+                <use xlink:href="#custom-dollar-square"></use>
+              </svg>
+            </span>
+            <span class="pc-mtext">Gerenciamento</span> <span class="badge text-warning rounded-pill bg-light-warning ms-2 theme-version text-xs">Breve</span>
+          </a>
+        </li>
+        <li class="pc-item pc-hasmenu">
+          <a href="#" class="pc-link">
+            <span class="pc-micon">
+              <svg class="pc-icon">
+                <use xlink:href="#custom-message-2"></use>
+              </svg>
+            </span>
+            <span class="pc-mtext">Chat Comunidade</span> <span class="badge text-warning rounded-pill bg-light-warning ms-2 theme-version text-xs">Breve</span>
+          </a>
+        </li>
+        <li class="pc-item">
+          <a href="{% url 'logout' %}"  class="pc-link">
+            <span class="pc-micon">
+              <svg class="pc-icon">
+                <use xlink:href="#custom-logout-1-outline"></use>
+              </svg>
+            </span>
+            <span class="pc-mtext">Sair</span></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<header class="pc-header">
+  <div class="header-wrapper"> 
+<div class="me-auto pc-mob-drp">
+  <ul class="list-unstyled">
+    <li class="pc-h-item pc-sidebar-collapse">
+      <a href="#" class="pc-head-link ms-0" id="sidebar-hide">
+        <i class="ti ti-menu-2"></i>
+      </a>
+    </li>
+    <li class="pc-h-item pc-sidebar-popup">
+      <a href="#" class="pc-head-link ms-0" id="mobile-collapse">
+        <i class="ti ti-menu-2"></i>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+<div class="ms-auto">
+  <ul class="list-unstyled">
+    <li class="dropdown pc-h-item">
+      <a
+        class="pc-head-link dropdown-toggle arrow-none me-0"
+        data-bs-toggle="dropdown"
+        href="#"
+        role="button"
+        aria-haspopup="false"
+        aria-expanded="false"
+      >
+        <svg class="pc-icon">
+          <use xlink:href="#custom-sun-1"></use>
+        </svg>
+      </a>
+      <div class="dropdown-menu dropdown-menu-end pc-h-dropdown">
+        <a href="#!" class="dropdown-item" onclick="layout_change('dark')">
+          <svg class="pc-icon">
+            <use xlink:href="#custom-moon"></use>
+          </svg>
+          <span>Escuro</span>
+        </a>
+        <a href="#!" class="dropdown-item" onclick="layout_change('light')">
+          <svg class="pc-icon">
+            <use xlink:href="#custom-sun-1"></use>
+          </svg>
+          <span>Claro</span>
+        </a>
+        <a href="#!" class="dropdown-item" onclick="layout_change_default()">
+          <svg class="pc-icon">
+            <use xlink:href="#custom-setting-2"></use>
+          </svg>
+          <span>Padrão</span>
+        </a>
+      </div>
+    </li>
+
+    <li class="dropdown pc-h-item header-user-profile">
+      <a
+        class="pc-head-link dropdown-toggle arrow-none me-0"
+        data-bs-toggle="dropdown"
+        href="#"
+        role="button"
+        aria-haspopup="false"
+        data-bs-auto-close="outside"
+        aria-expanded="false"
+      >
+        <img src="https://invenioptl.com/images/bot.gif" alt="user-image" class="user-avtar" />
+      </a>
+      <div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown">
+        <div class="dropdown-header d-flex align-items-center justify-content-between">
+          <h5 class="m-0">Minha Conta</h5>
+        </div>
+        <div class="dropdown-body">
+          <div class="profile-notification-scroll position-relative" style="max-height: calc(100vh - 225px)">
+            <div class="d-flex mb-1">
+              <div class="flex-shrink-0">
+                <img src="https://invenioptl.com/images/bot.gif" alt="user-image" class="user-avtar wid-35" />
+              </div>
+              <div class="flex-grow-1 ms-3">
+                <h6 class="mb-1">{{ user.first_name }} 🖖</h6>
+                <span>{{ user.email }}</span>
+              </div>
+            </div>
+            <hr class="border-secondary border-opacity-50" />
+            <div class="card">
+              <div class="card-body py-3">
+                <div class="flex-grow-1 ms-3">
+                  <h6 class="mb-1">Sua conta expira dia:</h6>
+                  <span>{{ user.plan_expire }}</span>
+                </div>
+              </div>
+            </div>
+            <hr class="border-secondary border-opacity-50" />
+            <div class="d-grid mb-3">
+            <a href="{% url 'logout' %}" ><button style="width: 100% !important;" class="btn btn-primary">
+                <svg class="pc-icon me-2">
+                  <use xlink:href="#custom-logout-1-outline"></use></svg>Sair
+              </button></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+ </div>
+</header>
+    <div class="pc-container">
+      <div class="pc-content">
+        <div class="page-header">
+          <div class="page-block">
+            <div class="row align-items-center">
+              <div class="col-md-12">
+                <ul class="breadcrumb mb-3">
+                  <li class="breadcrumb-item"><a href="#">Admin</a></li>
+                  <li class="breadcrumb-item"><a href="javascript: void(0)">Adicionar Cliente</a></li>
+                </ul>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="card">
+            <div class="card-header">
+              <h5>Adicionar novo cliente </h5>
+              <p class="">Insira as informações do cliente.</p>
+            </div>
+            <div class="card-body" style="margin-top: -1em;">
+              <form method="post">
+                {% csrf_token %}
+            
+                {% if form.errors %}
+                    <span class="text-danger fw-bold text-center w-100 d-block bg-white p-3 rounded mb-2">Dados incorretos, verifique se os mesmos estão certos.</span>
+                {% endif %}
+                <div class="form-group row">
+                  <div class="col-lg-6">
+                    <label class="form-label">Nome:</label>
+                    <input type="text" value="{{ form.name.value }}" name="name" class="form-control" placeholder="Nome Completo" required>
+                  </div>
+                  <div class="col-lg-6">
+                    <label class="form-label">Email:</label>
+                    <input type="email" value="{{ form.email.value }}" name="email" class="form-control" placeholder="E-mail" required>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-lg-6">
+                    <label class="form-label">Senha:</label>
+                    <div class="input-group search-form">
+                      <input type="password" value="{{ form.name.value }}" name="password" class="form-control" placeholder="Senha" required>
+                      <span class="input-group-text bg-transparent"><i class="feather icon-lock"></i></span>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <label class="form-label">Confirmar Senha:</label>
+                    <div class="input-group search-form">
+                      <input type="password" value="{{ form.name.value }}" name="confirm_password" class="form-control" placeholder="Confirmar senha" required>
+                      <span class="input-group-text bg-transparent"><i class="feather icon-lock"></i></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-lg-6">
+                    <label class="form-label">Whatsapp:</label>
+                    <div class="input-group search-form">
+                      <input type="text" value="{{ form.name.value }}" name="whatsapp" class="form-control" placeholder="Whatsapp" required>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <label class="form-label">Link Produto:</label>
+                    <div class="input-group search-form">
+                      <input type="text" value="{{ user.produto_link}}" name="produto_link" class="form-control" placeholder="Whatsapp" required>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="form-group row">
+                  <div class="col-lg-6">
+                    <div class="d-grid gap-2 mt-2">
+                      <button class="btn btn-primary" type="submit">Adicionar cliente</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body p-0 pt-0 h-100 position-relative">
+      
+  </div>
+  
+    <footer class="pc-footer">
+      <div class="footer-wrapper container-fluid">
+        <div class="row">
+          <div class="col my-1">
+            <p class="m-0">BookBet 2023 - Todos os Direitos Reservados</p>
+          </div>
+          <div class="col-auto my-1">
+           
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://bookbet.com.br/static/bbfiles/js/plugins/apexcharts.min.js"></script>
+    <script src="https://bookbet.com.br/static/bbfiles/js/pages/dashboard-default.js"></script>
+    <script nonce="ab75b928-43a8-4d47-88b8-42c67853957c">(function(w,d){!function(bt,bu,bv,bw){bt[bv]=bt[bv]||{};bt[bv].executed=[];bt.zaraz={deferred:[],listeners:[]};bt.zaraz.q=[];bt.zaraz._f=function(bx){return function(){var by=Array.prototype.slice.call(arguments);bt.zaraz.q.push({m:bx,a:by})}};for(const bz of["track","set","debug"])bt.zaraz[bz]=bt.zaraz._f(bz);bt.zaraz.init=()=>{var bA=bu.getElementsByTagName(bw)[0],bB=bu.createElement(bw),bC=bu.getElementsByTagName("title")[0];bC&&(bt[bv].t=bu.getElementsByTagName("title")[0].text);bt[bv].x=Math.random();bt[bv].w=bt.screen.width;bt[bv].h=bt.screen.height;bt[bv].j=bt.innerHeight;bt[bv].e=bt.innerWidth;bt[bv].l=bt.location.href;bt[bv].r=bu.referrer;bt[bv].k=bt.screen.colorDepth;bt[bv].n=bu.characterSet;bt[bv].o=(new Date).getTimezoneOffset();if(bt.dataLayer)for(const bG of Object.entries(Object.entries(dataLayer).reduce(((bH,bI)=>({...bH[1],...bI[1]})),{})))zaraz.set(bG[0],bG[1],{scope:"page"});bt[bv].q=[];for(;bt.zaraz.q.length;){const bJ=bt.zaraz.q.shift();bt[bv].q.push(bJ)}bB.defer=!0;for(const bK of[localStorage,sessionStorage])Object.keys(bK||{}).filter((bM=>bM.startsWith("_zaraz_"))).forEach((bL=>{try{bt[bv]["z_"+bL.slice(7)]=JSON.parse(bK.getItem(bL))}catch{bt[bv]["z_"+bL.slice(7)]=bK.getItem(bL)}}));bB.referrerPolicy="origin";bB.src="../../../cdn-cgi/zaraz/sd0d9.js?z="+btoa(encodeURIComponent(JSON.stringify(bt[bv])));bA.parentNode.insertBefore(bB,bA)};["complete","interactive"].includes(bu.readyState)?zaraz.init():bt.addEventListener("DOMContentLoaded",zaraz.init)}(w,d,"zarazData","script");})(window,document);</script></head>
+    <script src="https://bookbet.com.br/static/bbfiles/js/plugins/popper.min.js"></script>
+    <script src="https://bookbet.com.br/static/bbfiles/js/plugins/simplebar.min.js"></script>
+    <script src="https://bookbet.com.br/static/bbfiles/js/plugins/bootstrap.min.js"></script>
+    <script src="https://bookbet.com.br/static/bbfiles/js/fonts/custom-font.js"></script>
+    <script src="https://bookbet.com.br/static/bbfiles/js/pcoded.js"></script>
+    <script src="https://bookbet.com.br/static/bbfiles/js/plugins/feather.min.js"></script>
+    <script src="https://bethacker.app/login/js/jquery.min.js"></script>
+    <script src="https://bethacker.app/login/js/popper.js"></script>
+    <script src="https://bethacker.app/login/js/bootstrap.min.js"></script>
+    <script src="https://bethacker.app/login/js/main.js"></script>
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8b253dfea2ab4077af8c6f58422dfbfd1689876627854" integrity="sha512-bjgnUKX4azu3dLTVtie9u6TKqgx29RBwfj3QXYt5EKfWM/9hPSAI/4qcV5NACjwAo8UtTeWefx6Zq5PHcMm7Tg==" data-cf-beacon='{"rayId":"7f0235047e71c43b","version":"2023.7.0","b":1,"token":"cd0b4b3a733644fc843ef0b185f98241","si":100}' crossorigin="anonymous"></script>
+    <script src="https://bookbet.com.br/static/bbfiles/js/plugins/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/imask/6.4.3/imask.min.js"
+                        integrity="sha512-yJ3vm1HmQtcgeMtbUYCp7PuTLyjU+ffCnVNTuE1Uccv1BmkoaJIXt1EjBVGnscjCILc62hTJJJ2rJJBTcw8RjQ=="
+                        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+                <script>
+                    const element = document.querySelector('input[name=whatsapp]');
+                    const maskOptions = {
+                        mask: '(00)0.0000-0000'
+                    };
+                    const mask = IMask(element, maskOptions);
+                </script>
+
+    <script>layout_change('dark');</script>
+    <script>layout_sidebar_change('false');</script>
+    <script>change_box_container('false');</script>
+    <script>layout_caption_change('true');</script>
+    <script>layout_rtl_change('false');</script>
+    <script>preset_change("preset-8");</script>
+    <script src="https://bookbet.com.br/static/bbfiles/js/plugins/choices.min.js"></script>
+   
+  </body>
+</html>

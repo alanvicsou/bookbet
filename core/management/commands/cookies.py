@@ -1,0 +1,20 @@
+cookies = [
+    {'domain': '.betburger.com', 'expirationDate': 1733515330.372042, 'httpOnly': False, 'name': '_ga', 'path': '/', 'secure': False, 'value': 'GA1.1.856970940.1698178177'},
+    {'domain': '.betburger.com', 'expirationDate': 1733515330.444251, 'httpOnly': False, 'name': '_ga_VYJNPBW57W', 'path': '/', 'secure': False, 'value': 'GS1.1.1698953855.14.1.1698955330.58.0.0'},
+    {'domain': '.betburger.com', 'expirationDate': 1705954177, 'httpOnly': False, 'name': '_gcl_au', 'path': '/', 'secure': False, 'value': '1.1.1501837583.1698178177'},
+    {'domain': '.betburger.com', 'expirationDate': 1699041730, 'httpOnly': False, 'name': '_gid', 'path': '/', 'secure': False, 'value': 'GA1.2.1581496623.1698810856'},
+    {'domain': '.betburger.com', 'expirationDate': 1698957787, 'httpOnly': False, 'name': '_hjAbsoluteSessionInProgress', 'path': '/', 'secure': True, 'value': '0'},
+    {'domain': '.betburger.com', 'expirationDate': 1698957790, 'httpOnly': False, 'name': '_hjIncludedInSessionSample_1468797', 'path': '/', 'secure': True, 'value': '1'},
+    {'domain': '.betburger.com', 'expirationDate': 1698957787, 'httpOnly': False, 'name': '_hjSession_1468797', 'path': '/', 'secure': True, 'value': 'eyJpZCI6IjhiZTJlOGY3LTRlODgtNGFmOC04NDcwLTU5MmYyOGRkYjk4NCIsImNyZWF0ZWQiOjE2OTg5NTM4NTU3OTcsImluU2FtcGxlIjp0cnVlLCJzZXNzaW9uaXplckJldGFFbmFibGVkIjp0cnVlfQ=='},
+    {'domain': '.betburger.com', 'expirationDate': 1730491330, 'httpOnly': False, 'name': '_hjSessionUser_1468797', 'path': '/', 'secure': True, 'value': 'eyJpZCI6IjgwZTU5OGJkLTkwMDYtNTU1ZC05ZGJlLWFjNzI2MzdhMjU1ZCIsImNyZWF0ZWQiOjE2OTgxNzgxNzcwNDUsImV4aXN0aW5nIjp0cnVlfQ=='},
+    {'domain': '.betburger.com', 'expirationDate': 1722285333, 'httpOnly': False, 'name': 'intercom-device-id-sa4qmk5s', 'path': '/', 'secure': False, 'value': 'faa22946-abc0-44ed-b1ad-71ba487b73c8'},
+    {'domain': '.betburger.com', 'expirationDate': 1721516195, 'httpOnly': False, 'name': 'intercom-id-sa4qmk5s', 'path': '/', 'secure': False, 'value': '65cae4b2-a194-41af-9817-ead24fa67160'},
+    {'domain': '.betburger.com', 'expirationDate': 1699560133, 'httpOnly': False, 'name': 'intercom-session-sa4qmk5s', 'path': '/', 'secure': False, 'value': 'ZWtNc2RJUXBXZGEwWmhFbWtQb094YzYxWEdUb1BkTDBzUXNZd0FETnpBM0pQUmdIRnRONmk5L2wxTW81Tkc4eS0tU0xNdnhkYlVQZE9pbkw0QWxlc2VBUT09--9379c951f9aa8a0125781f6c0152e3e890fd85a9'},
+    {'domain': '.betburger.com', 'expirationDate': 1714507332, 'httpOnly': False, 'name': 'popmechanic_sbjs_migrations', 'path': '/', 'secure': False, 'value': 'popmechanic_1418474375998%3D1%7C%7C%7C1471519752600%3D1%7C%7C%7C1471519752605%3D1'},
+    {'domain': 'www.betburger.com', 'httpOnly': True, 'name': '_hjHasCachedUserAttributes', 'path': '/', 'secure': True, 'value': 'true'},
+    {'domain': 'www.betburger.com', 'expirationDate': 1698956110, 'httpOnly': False, 'name': '_hjUserAttributesHash', 'path': '/', 'secure': True, 'value': '678fcbf670953ba53013a62706c3ccba'},
+    {'domain': 'www.betburger.com', 'httpOnly': True, 'name': 'abb_web_session', 'path': '/', 'secure': True, 'value': 'a548dbf4e75e47ce4f3159fba8c57fca'},
+    {'domain': 'www.betburger.com', 'expirationDate': 1730425532, 'httpOnly': False, 'name': 'cookieconsent_status', 'path': '/', 'secure': False, 'value': 'allow'},
+    {'domain': 'www.betburger.com', 'httpOnly': False, 'name': 'refresh_token', 'path': '/', 'secure': False, 'value': 'c35c218a05508f2cbceef4bf2a8c1b92'},
+    {'domain': 'www.betburger.com', 'httpOnly': False, 'name': 'zoom', 'path': '/', 'secure': False, 'value': '100'}
+]
