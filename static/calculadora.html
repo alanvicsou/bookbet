@@ -1,0 +1,190 @@
+
+<!DOCTYPE html>
+<html lang="pt" class="ls fw" data-prefix="1803143">
+<head>
+    <title>Bookbet :: Apostas inteligentes</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Bookbet - Apostas inteligentes | Scanner de apostas seguras com lucros garantidos ">
+    <meta name="keywords" content="Bookbet, Apostas, Apostas seguras, Surebets, Betting, Sportbook">
+    <meta name="author" content="Bookbet">
+    <link rel="icon" href="https://bookbet.com.br/static/bookbet-icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://bookbet.com.br/static/bbfiles/fonts/inter/inter.css"  id="main-font-link" />
+    <link rel="stylesheet" href="https://bookbet.com.br/static/bbfiles/fonts/tabler-icons.min.css" />
+    <link rel="stylesheet" href="https://bookbet.com.br/static/bbfiles/fonts/feather.css" />
+    <link rel="stylesheet" href="https://bookbet.com.br/static/bbfiles/fonts/fontawesome.css" />
+    <link rel="stylesheet" href="https://bookbet.com.br/static/bbfiles/fonts/material.css" />
+    <link rel="stylesheet" href="https://bookbet.com.br/static/bbfiles/css/style.css" id="main-style-link" />
+    <link rel="stylesheet" href="https://bookbet.com.br/static/bbfiles/css/style-preset.css" />
+    <script src="https://bookbet.com.br/static/pt/application-35e87052de4ace6ae2e310c4665368826885c6313d95298bfd41b3722169e188.js" id="main-script" data-user-id="267630" data-sound="3" async="async"></script>
+
+    <script async="" src="{% static 'js' %}"></script>
+
+
+    <title>Bookbet :: Calculadora</title>
+</head>
+
+<body data-pc-preset="preset-8" data-pc-sidebar-caption="true" data-pc-direction="ltr" data-pc-theme_contrast="" data-pc-theme="dark">
+  <script>
+    //<![CDATA[
+    var Calculator = {
+      currencies: [[1.0, 0.908092, 4.8734], [1.101210009558503, 1.0, 5.366636860582408], [0.2051955513604465, 0.18633643862601057, 1.0]],
+      formulaName: "bookformula1",
+      prongsAmount: 0,
+      oddFormat: "eu",
+      winBetBehaviours: null,
+      calculateBets: null,
+      locale: "pt",
+      settings: {}
+    };
+    
+    //]]>
+    </script>
+<div class="row" >
+    <div class="col-lg-12" style="background: #1b232d !important;">
+      <div class="card price-card price-popular">
+        <div class="card-body">
+            <form>
+            <div class="price-head">
+              <img src="https://bookbet.com.br/static/bookbet-icon.png" style="width: 50px; height: 50px;">
+              <br> <span class="badge f-14 text-success mb-4">Calculadora de Apostas</span>
+              <center>
+                <div class="col-lg-6">
+                  <b><h1 class="mb-0 text-success">
+                      <div style="" class="profit-container"><span class="profit_percent" title="Lucro"></span></div>
+                    </h1></b>
+                  Lucro garantido
+                </div>
+              </center>
+            </div>
+          </div>
+          
+          <main class="tool">
+            <div>
+                <div class="formula_info" style="display: none;">
+                  <i>
+                    <label for="prongs_amount">Número de resultado de aposta segura:</label>
+                    <select class="prongs_amount form-control inline-input w-auto" id="prongs_amount">
+                      <option selected="selected" value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4 ou mais</option>
+                    </select>
+                    </i>
+                  <i>
+                    <label for="fork_type">Tipo de aposta segura (fórmula):</label>
+                    <select class="fork_type form-control inline-input w-auto" id="fork_type">
+                    </select>
+                  </i>
+                </div>
+          
+          
+              <table class="table table-hover w-100 mb-0"  id="calc_table">
+                <thead>
+                  <th class="coeff_c  first">ODD</th>
+                  <th style="display: none;" >
+                    Com comissão
+                    <i class="fa fa-question-circle"></i>
+                  </th>  
+                  <th class="curr_c first">Aposta</th>
+                  <th style="display: none;" ></th>
+                  <th class="exbet_c" style="display: none;"><abbr >D</abbr></th>
+                  <th class="exbet_c" ><abbr >C</abbr></th>
+                  <th class="profit_c">Lucro</th>
+                </thead>
+          
+                  <tr class="rowPattern d-none">
+                    <td class="coeff_c text-nowrap" style="display: none;">
+                      <input class="back_lay btn-site" id="back_lay" name="back_lay" type="button" value="+">
+                      <span class="koefficient_descr" title=""></span>
+                    </td>
+                    <td class="coeff_c" >
+                      <input class="koefficient form-control inline-input w-number" value="1" type="text" >
+                      <span class="minorb">Chance contra</span>
+                    </td>
+                    <td class="comission_c" style="display: none;" >
+                      <div class="input-group">
+                        <input class="commission form-control inline-input w-number" value="0.0" type="text" >
+                        <div class="input-group-append" style="display: none;">
+                          <span class="input-group-text">%</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="comission_c" style="display: none;"><span class="koefficient_with_commission">1</span></td>
+                    <td class="bet_c" >
+                      <input class="stake form-control inline-input w-number" value="0" type="text"/>
+                      <div class="backers-block" style="display: none;">
+                        <input class="backers_stake form-control inline-input w-number" value="0.0" type="text">
+                        <span class="minorb">Aposta a favor</span>
+                      </div>
+                    </td>
+                    <td class="bet_c" style="display: none;">  
+                      <select name="currencies" id="currencies" class="booker-currency form-control w-number">
+                        <option value="0">USD</option>
+                        <option value="1">EUR</option>
+                        <option value="2">BRL</option>
+                        <option value="999">More</option>
+                      </select>
+                    </td>
+                    <td class="currency_c currency_c1" style="display: none;">
+                      <input type="button" class="ctl-simple currency_direction" name="currency_direction"/>=
+                    </td>
+                    <td class="currency_c" style="display: none;">
+                      <input class="currency form-control inline-input w-number" name="currency" type="text" value="" />
+                    </td>
+                    <td class="exbet_c" style="display: none;">
+                      <input class="distribution" checked="checked" title="Distribuir lucro nesta aposta" type="checkbox"/>
+                    </td>
+                    <td class="exbet_c" >
+                      <input class="fixed-value" type="radio" checked="checked"  value="sum" name="fixed-value" title="Corrigir esta quantia de apostas durante o cálculo"/>
+                    </td>
+                    <td class="prize profit_c" >
+                      <span class="prize">0</span>
+                    </td>
+                </tr>
+          
+          
+          
+                <tr class="summarize">
+                  <td style="display: none; border-bottom: none;">
+                  </td>
+                  <td class="comission_c" style=" border-bottom: none;" >
+                  </td>
+                  <td class="bet_c" style="display: none;">
+                    <select name="currencies" id="currencies" class="sum-currency form-control w-number">
+                      <option value="0">USD</option>
+                      <option value="1">EUR</option>
+                      <option value="2">BRL</option>
+                      <option value="999">More</option>
+                    </select>
+                  </td>
+                  <td class="bet_c text-end" style=" border-bottom: none;">
+                    <div class="input-group align-items-center" >
+                        <div class="input-group-text" style="background: #616161; border: 1px solid #616161;">
+                            Valor da aposta:
+                        </div>
+                        <input class="sum form-control inline-input w-number" type="text" value="100" >
+                    </div>
+                  </td>
+                  <td class="exbet_c" style=" border-bottom: none;" >
+                    <input style="display:none !important; " class="fixed-value" type="radio" checked="checked" value="sum" name="fixed-value" title="Corrigir esta quantia de apostas durante o cálculo"/>
+                  </td>
+                  <td class="ct_c" style=" border-bottom: none;" >
+                  </td>
+                  
+                </tr>
+          
+              </table>
+          
+            </div>
+          </main>
+        
+        </div>
+      </div>
+    </div> 
+  </div>
+  
+
+
+</body>
+</html>
